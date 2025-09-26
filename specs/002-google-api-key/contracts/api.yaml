@@ -1,0 +1,32 @@
+openapi: 3.0.0
+info:
+  title: Google Gemini Image Generation API
+  version: 1.0.0
+paths:
+  /api/generate-image:
+    post:
+      summary: Generate an image from a text prompt
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+      responses:
+        '200':
+          description: Successful image generation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  imageUrl:
+                    type: string
+                    format: uri
+        '400':
+          description: Bad request (e.g., empty prompt)
+        '500':
+          description: Internal server error (e.g., API key issue, upstream API error)
